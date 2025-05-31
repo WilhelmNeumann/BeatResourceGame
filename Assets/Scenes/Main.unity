@@ -211,6 +211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3575497227004728972, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 853173528}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -517,6 +521,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7c76db14110a1e3853931324ab4323, type: 3}
+--- !u!114 &853173528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5177685373591332135, guid: 2c7c76db14110a1e3853931324ab4323, type: 3}
+  m_PrefabInstance: {fileID: 853173527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88163cc3cc05df37092c421184981ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1110455820
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +564,6 @@ MonoBehaviour:
   gameRounds: 5
   numberOfResourcesPerRound: 4
   resourePrefab: {fileID: 8460880594842275074, guid: e3ac32e6e20c444fdbada48c0d864aa1, type: 3}
-  cardSpacing: 2
   centerPosition: {x: 0, y: 0, z: 0}
   animationDuration: 0.5
   shakeDuration: 0.3

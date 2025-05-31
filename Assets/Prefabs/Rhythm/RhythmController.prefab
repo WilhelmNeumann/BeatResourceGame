@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rhythmInput: {fileID: 3931875272608045671}
+  ui: {fileID: 0}
   songName: Beat
 --- !u!114 &3931875272608045671
 MonoBehaviour:
