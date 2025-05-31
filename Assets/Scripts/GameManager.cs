@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector3 centerPosition = new Vector3(0, 0, 0);
     [SerializeField] private float animationDuration = 0.5f;
 
-    private float cardSpacing = 3; // space between cards
+    private float cardSpacing = 3.5f; // space between cards
 
     private List<ResourceObject> resources;
 
