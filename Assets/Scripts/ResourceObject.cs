@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 using System.Linq;
 
 public class ResourceObject : MonoBehaviour
@@ -12,10 +13,17 @@ public class ResourceObject : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowsContainer;
 
+    private List<Transform> arrows;
+
+    private int currentArrowIndex = 0;
+
+    public int beatCount;
+
     public static Vector3 OffscreenPosition = new Vector3(10, -10, 0);
 
     public void Init(ResourceType resourceType, List<RhythmKey> sequence) {
         this.resourceType = resourceType;
+        beatCount = sequence.Count;
 
         switch (resourceType)
         {
@@ -40,8 +48,10 @@ public class ResourceObject : MonoBehaviour
 
         for (int i = 0; i < arrowCount; i++)
         {
+            arrows = new List<Transform>();
             GameObject arrow = Instantiate(arrowPrefab, arrowsContainer);
             Transform arrowTransform = arrow.transform;
+            arrows.Add(arrowTransform);
 
             float xOffset = i * arrowSpacing - totalWidth / 2f;
             arrowTransform.localPosition = new Vector3(xOffset, -1f, 0f); // Adjust Y if needed
@@ -69,13 +79,29 @@ public class ResourceObject : MonoBehaviour
         }
     }
 
-    public void Shake() {
+    public void Beat(int index)
+    {
+        if (index < 0 || index >= arrows.Count)
+        {
+            Debug.LogWarning($"Beat index {index} out of range for {name}.");
+            return;
+        }
 
+        Transform arrow = arrows[index];
+        float shakeDuration = 0.25f;
+
+        // Shake arrow
+        arrow.DOKill();
+        arrow.DOShakeScale(shakeDuration, strength: 0.3f, vibrato: 10, randomness: 90);
+
+        // Shake whole resource object
+        transform.DOKill();
+        transform.DOShakePosition(shakeDuration, strength: 0.2f, vibrato: 8, randomness: 90, fadeOut: true);
+        transform.DOShakeScale(shakeDuration, strength: 0.15f, vibrato: 8, randomness: 90, fadeOut: true);
     }
 
 
-    private void Update()
-    {
-
+    public int GetArrowCount() {
+        return arrows.Count;
     }
 }

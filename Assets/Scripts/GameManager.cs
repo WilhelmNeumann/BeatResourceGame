@@ -16,29 +16,31 @@ public class GameManager : MonoBehaviour
 
     private float cardSpacing = 3; // space between cards
 
-    private GameState _gameState;
-
     private List<ResourceObject> resources;
 
     private ResourceObject _currentResourcePlaying;
+
+    private bool isPlaying = false;
 
     private IEnumerator Start()
     {
         resources = InstantiateResources(5);
 
-        _gameState = GameState.Listening;
+
         yield return AppearWithAnimation(resources);
 
-        _gameState = GameState.Playing;
-        yield return Play(resources);
+        Conductor.OnBeat += OnBeat;
+    
+        isPlaying = true;
+        yield return new WaitWhile(() => isPlaying);
 
-        _gameState = GameState.Building;
+        Conductor.OnBeat -= OnBeat;
         // yield return DisappearWithAnimation(resources);
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {
         var sequence = ResourceGenerator.GenerateResources(amount);
-        resources = new();
+        resources = new List<ResourceObject>();
         foreach (var resourceType in sequence)
         {
             GameObject instance = Instantiate(resourePrefab, ResourceObject.OffscreenPosition, Quaternion.identity);
@@ -87,34 +89,41 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(animationDuration);
     }
-    
-    [SerializeField] private float shakeDuration = 0.3f;
-    [SerializeField] private float shakeStrength = 0.3f;
-    [SerializeField] private int vibrato = 10;
 
-    public IEnumerator Play(List<ResourceObject> resources)
+    private int currentResourceIndex = 0;
+    private int currentArrowIndex = 0;
+
+    private void OnBeat(int _)
     {
-        int count = resources.Count;
-
-        for (int i = 0; i < count; i++)
+        if (currentResourceIndex >= resources.Count)
         {
-            Transform t = resources[i].transform;
-
-            // Shake position slightly (local or world, depending on layout)
-            t.DOShakePosition(shakeDuration, strength: shakeStrength, vibrato: vibrato, randomness: 90, snapping: false, fadeOut: true);
-
-            // Shake scale
-            t.DOShakeScale(shakeDuration, strength: 0.2f, vibrato: vibrato, randomness: 90, fadeOut: true);
-
-            yield return new WaitForSeconds(0.1f); // Delay between each resource
+            // All resources are done
+            isPlaying = false;
+            return;
         }
 
-        yield return new WaitForSeconds(shakeDuration);
+        var currentResource = resources[currentResourceIndex];
+
+        if (currentArrowIndex < currentResource.GetArrowCount())
+        {
+            currentResource.Beat(currentArrowIndex);
+            currentArrowIndex++;
+        }
+        else
+        {
+            // Move to next resource
+            currentResourceIndex++;
+            currentArrowIndex = 0;
+
+            // Try to beat next one immediately
+            OnBeat(_); // optional recursion to not skip beat timing
+        }
     }
 
-
-    private void Update()
-    {
-
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            OnBeat(0); // or any index you want to test
+        }
     }
 }
