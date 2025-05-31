@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RhythmInput : MonoBehaviour
 {
-    private static readonly Dictionary<KeyCode, int> KEYCODE_TO_INDEX = new Dictionary<KeyCode, int>()
+    private static readonly Dictionary<KeyCode, RhythmKey> KEYCODE_TO_INDEX = new Dictionary<KeyCode, RhythmKey>()
     {
-        { KeyCode.LeftArrow, 0 },
-        { KeyCode.UpArrow, 1},
-        { KeyCode.DownArrow, 2},
-        { KeyCode.RightArrow, 3},
+        { KeyCode.LeftArrow, RhythmKey.Left },
+        { KeyCode.UpArrow, RhythmKey.Up },
+        { KeyCode.DownArrow, RhythmKey.Down },
+        { KeyCode.RightArrow, RhythmKey.Right },
     };
 
-    public Action<int> OnKeyPressed;
+    public Action<RhythmKey> OnKeyPressed;
 
     private void Update()
     {
