@@ -15,10 +15,10 @@ public class RhythmPressUI : MonoBehaviour
     };
     private static readonly Dictionary<RhythmKey, float> KEY_TO_ROT = new Dictionary<RhythmKey, float>()
     {
-        { RhythmKey.Left, 0 },
-        { RhythmKey.Up, 270 },
-        { RhythmKey.Down, 90 },
-        { RhythmKey.Right, 180 },
+        { RhythmKey.Left, 0 + 180 },
+        { RhythmKey.Up, 270 + 180 },
+        { RhythmKey.Down, 90 + 180 },
+        { RhythmKey.Right, 180 + 180 },
     };
     [SerializeField] private RectTransform holder;
     [SerializeField] private CanvasGroup arrow;
