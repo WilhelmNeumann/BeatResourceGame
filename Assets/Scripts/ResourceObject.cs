@@ -46,9 +46,9 @@ public class ResourceObject : MonoBehaviour
         int arrowCount = sequence.Count;
         float totalWidth = (arrowCount - 1) * arrowSpacing;
 
+        arrows = new List<Transform>();
         for (int i = 0; i < arrowCount; i++)
         {
-            arrows = new List<Transform>();
             GameObject arrow = Instantiate(arrowPrefab, arrowsContainer);
             Transform arrowTransform = arrow.transform;
             arrows.Add(arrowTransform);
@@ -79,29 +79,22 @@ public class ResourceObject : MonoBehaviour
         }
     }
 
-    public void Beat(int index)
+    public bool Beat()
     {
-        if (index < 0 || index >= arrows.Count)
-        {
-            Debug.LogWarning($"Beat index {index} out of range for {name}.");
-            return;
-        }
-
-        Transform arrow = arrows[index];
+        Transform arrow = arrows[currentArrowIndex];
         float shakeDuration = 0.25f;
 
         // Shake arrow
         arrow.DOKill();
-        arrow.DOShakeScale(shakeDuration, strength: 0.3f, vibrato: 10, randomness: 90);
+        arrow.DOShakeScale(shakeDuration, strength: 2f, vibrato: 10, randomness: 10);
 
         // Shake whole resource object
         transform.DOKill();
         transform.DOShakePosition(shakeDuration, strength: 0.2f, vibrato: 8, randomness: 90, fadeOut: true);
         transform.DOShakeScale(shakeDuration, strength: 0.15f, vibrato: 8, randomness: 90, fadeOut: true);
-    }
 
+        currentArrowIndex++;
 
-    public int GetArrowCount() {
-        return arrows.Count;
+        return currentArrowIndex >= arrows.Count;
     }
 }

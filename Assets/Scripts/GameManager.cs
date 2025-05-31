@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private ResourceObject _currentResourcePlaying;
 
+    private int currentResourceIndex = 0;
+
     private bool isPlaying = false;
 
     private IEnumerator Start()
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitWhile(() => isPlaying);
 
         Conductor.OnBeat -= OnBeat;
-        // yield return DisappearWithAnimation(resources);
+        yield return DisappearWithAnimation(resources);
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {
@@ -90,8 +92,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(animationDuration);
     }
 
-    private int currentResourceIndex = 0;
-    private int currentArrowIndex = 0;
 
     private void OnBeat(int _)
     {
@@ -104,19 +104,9 @@ public class GameManager : MonoBehaviour
 
         var currentResource = resources[currentResourceIndex];
 
-        if (currentArrowIndex < currentResource.GetArrowCount())
-        {
-            currentResource.Beat(currentArrowIndex);
-            currentArrowIndex++;
-        }
-        else
-        {
-            // Move to next resource
+        var resourceBeatIsFinished = currentResource.Beat();
+        if(resourceBeatIsFinished) {
             currentResourceIndex++;
-            currentArrowIndex = 0;
-
-            // Try to beat next one immediately
-            OnBeat(_); // optional recursion to not skip beat timing
         }
     }
 
