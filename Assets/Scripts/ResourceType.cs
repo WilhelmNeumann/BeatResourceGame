@@ -1,4 +1,4 @@
-enum ResourceType
+public enum ResourceType
 {
     Gay = 0,
     Luxury = 1,
