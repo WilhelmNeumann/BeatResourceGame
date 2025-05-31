@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gameRounds;
     [SerializeField] private int numberOfResourcesPerRound;
     [SerializeField] private GameObject resourePrefab;
-    [SerializeField] private float cardSpacing = 50f; // space between cards
+
     [SerializeField] private Vector3 centerPosition = new Vector3(0, 0, 0);
     [SerializeField] private float animationDuration = 0.5f;
+
+    private float cardSpacing = 3; // space between cards
 
     private GameState _gameState;
 
