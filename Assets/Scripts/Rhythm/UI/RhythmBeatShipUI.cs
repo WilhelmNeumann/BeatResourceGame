@@ -17,6 +17,6 @@ public class RhythmBeatShipUI : MonoBehaviour
 
     private void Update()
     {
-        image.rectTransform.anchoredPosition = new Vector2(-width * ((Conductor.SongPositionInBeats - baseBeat) + Conductor.TimeSinceLastBeat), 0);
+        image.rectTransform.anchoredPosition = new Vector2(Mathf.Clamp(-width * ((Conductor.SongPositionInBeats - baseBeat) + Conductor.TimeSinceLastBeat), -2000, 2000), 0);
     }
 }

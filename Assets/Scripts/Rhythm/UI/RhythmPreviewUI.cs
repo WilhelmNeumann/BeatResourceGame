@@ -31,11 +31,11 @@ public class RhythmPreviewUI : MonoBehaviour
         {
             return;
         }
+        Conductor.PlaySong("Beat");
         Sequence delay = DOTween.Sequence();
         delay.AppendInterval(2);
         delay.AppendCallback(() =>
         {
-            Conductor.PlaySong("Beat");
             Init(new List<RhythmResource>()
             {
                 new RhythmResource(ResourceType.Gay, new List<RhythmKey>() { RhythmKey.Left, RhythmKey.Up, RhythmKey.Right }),
@@ -54,7 +54,7 @@ public class RhythmPreviewUI : MonoBehaviour
 
         int sum = 0;
         resources.ForEach(a => sum += a.Count);
-        conveyorBelt.Init(Conductor.SongPositionInBeats + countdown, sum);
+        conveyorBelt.Init(Conductor.SongPositionInBeats + countdown + 1, sum);
 
         gameObject.SetActive(true);
         ui.gameObject.SetActive(true);
