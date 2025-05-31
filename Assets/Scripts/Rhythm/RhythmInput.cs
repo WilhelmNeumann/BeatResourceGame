@@ -12,7 +12,7 @@ public class RhythmInput : MonoBehaviour
         { KeyCode.RightArrow, RhythmKey.Right },
     };
 
-    public Action<RhythmKey> OnKeyPressed;
+    public event Action<RhythmKey> OnKeyPressed;
 
     private void Update()
     {

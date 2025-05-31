@@ -8,8 +8,8 @@ public class RhythmController : MonoBehaviour
     [SerializeField] private RhythmInput rhythmInput;
     [SerializeField] private string songName;
 
-    public Action<Dictionary<ResourceType, float>> OnSongOver;
-    public Action<RhythmKey, bool> OnKeyMatch;
+    public event Action<Dictionary<ResourceType, float>> OnSongOver;
+    public event Action<RhythmKey, bool> OnKeyMatch;
 
     private List<int> pastTimestamps = new List<int>();
     private List<RhythmResource> resources;
