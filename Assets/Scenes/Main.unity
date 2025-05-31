@@ -699,6 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4475b421dd047cdb5f4155c45f66f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseBuilder: {fileID: 2107968881}
   gameRounds: 5
   numberOfResourcesPerRound: 4
   resourePrefab: {fileID: 8460880594842275074, guid: e3ac32e6e20c444fdbada48c0d864aa1, type: 3}
@@ -1154,6 +1155,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2ac46bfffd6a62b49b34c309ff3b8d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2107968881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5241860150400384806, guid: 714379b6a026ce3dc8649b33c0861833, type: 3}
+  m_PrefabInstance: {fileID: 913417160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cc25c1274b344f3aee8a194d756437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

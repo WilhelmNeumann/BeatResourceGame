@@ -15,6 +15,8 @@ public class FloorAnimation : MonoBehaviour
     private Vector3 initialPosition;
     private SpriteRenderer[] floorRenderers;
 
+    public event Action OnFinishedAnimation;
+
     public void StartFalling(Vector3 spawnPosition)
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,6 +52,7 @@ public class FloorAnimation : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 transform.position = initialPosition;
                 SpawnMagicCircle();
+                OnFinishedAnimation?.Invoke();
             }
         }
     }

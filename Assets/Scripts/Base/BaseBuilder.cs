@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class BaseBuilder : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BaseBuilder : MonoBehaviour
     [Header("Settings")]
     public float spawnHeight = 10f;
     public float accuracyThreshold = 0.5f; // Threshold for considering a resource type successful
+
+    public event Action OnFinishedAnimation;
 
     private static int currentFloorIndex = 0;
 
@@ -58,6 +61,7 @@ public class BaseBuilder : MonoBehaviour
             if (floorAnimation == null)
             {
                 floorAnimation = floorToBuild.AddComponent<FloorAnimation>();
+                floorAnimation.OnFinishedAnimation += () => OnFinishedAnimation?.Invoke();
             }            
             
             Vector3 spawnPosition = floorToBuild.transform.position + Vector3.up * spawnHeight;
