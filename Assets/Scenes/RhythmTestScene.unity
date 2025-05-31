@@ -479,6 +479,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1483512638}
     m_Modifications:
+    - target: {fileID: 852089485519381762, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1244424041269557604, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
       propertyPath: m_Name
       value: RhythmUI
@@ -569,6 +573,14 @@ PrefabInstance:
       objectReference: {fileID: 2070017498}
     - target: {fileID: 3827498771861199458, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585079625725930726, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635294754563360906, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9218592490223187403, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
