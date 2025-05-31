@@ -8,6 +8,7 @@ public class RhythmPreviewUI : MonoBehaviour
     [SerializeField] private RhythmPressUI ui;
     [SerializeField] private RhythmController controller;
     [SerializeField] private RhythmConveyorBeltUI conveyorBelt;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private int countdown = 3;
     [Space]
     [SerializeField] private bool mockInit;
@@ -18,6 +19,7 @@ public class RhythmPreviewUI : MonoBehaviour
     [SerializeField] private float textFadeTime = 0.4f;
     [SerializeField] private float textSizeMult = 1.2f;
     [SerializeField] private float textSizeFadeTime = 0.3f;
+    [SerializeField] private float fadeTime = 0.1f;
 
     private List<RhythmResource> resources;
     private int count;
@@ -58,6 +60,8 @@ public class RhythmPreviewUI : MonoBehaviour
 
         gameObject.SetActive(true);
         ui.gameObject.SetActive(true);
+
+        canvasGroup.DOFade(1, 0.2f);
     }
 
     private void NextNumber(int beat)
