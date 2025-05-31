@@ -70,11 +70,12 @@ public class GameManager : MonoBehaviour
 
         yield return AppearWithAnimation(resources);
 
+
         Conductor.OnBeat += OnBeat;
 
         isPlaying = true;
         yield return new WaitWhile(() => isPlaying);
-
+        yield return new WaitForSeconds(2f);
         Conductor.OnBeat -= OnBeat;
         yield return DisappearWithAnimation(resources);
 
@@ -83,6 +84,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitWhile(() => isDoingOtherStuff);
         isDoingOtherStuff = false;
         isPlaying = false;
+
+        resources.ForEach(a => DestroyImmediate(a.gameObject));
+        resources.Clear();
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {
@@ -92,7 +96,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject instance = Instantiate(resourePrefab, ResourceObject.OffscreenPosition, Quaternion.identity);
             ResourceObject resource = instance.GetComponent<ResourceObject>();
-          
+
 
             List<RhythmKey> keys = arrows[resourceType];
             resource.Init(resourceType, keys);

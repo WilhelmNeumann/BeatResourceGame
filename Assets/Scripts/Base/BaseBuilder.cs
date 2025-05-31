@@ -14,7 +14,7 @@ public class BaseBuilder : MonoBehaviour
 
     [Header("Settings")]
     public float spawnHeight = 10f;
-    public float accuracyThreshold = 0.5f; // Threshold for considering a resource type successful
+    public float accuracyThreshold = 0.3f; // Threshold for considering a resource type successful
 
     public event Action OnFinishedAnimation;
 
