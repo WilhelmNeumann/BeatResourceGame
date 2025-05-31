@@ -57,12 +57,12 @@ public class Conductor : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this);
+        musicSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
         //PlaySong(Songs[0].Name);
     }
 
@@ -129,6 +129,8 @@ public class Conductor : MonoBehaviour
     }
 
     public static int SongPositionInBeats { get => Mathf.FloorToInt(instance.songPositionInBeats); }
+
+    public static bool Playing => instance.musicSource.isPlaying;
 
     public static event Action<int> OnBeat;
 }

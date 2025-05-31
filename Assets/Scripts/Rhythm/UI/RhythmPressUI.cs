@@ -36,7 +36,6 @@ public class RhythmPressUI : MonoBehaviour
     {
         baseSizeDelta = holder.sizeDelta;
         input.OnKeyPressed += AnimateKeyPress;
-        gameObject.SetActive(true);
     }
 
     private void AnimateKeyPress(RhythmKey key)
