@@ -25,9 +25,34 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = false;
 
+    private Dictionary<ResourceType, List<RhythmKey>> arrows;
+
+    private List<RhythmKey> GenerateRandomList()
+    {
+        List<RhythmKey> result = new List<RhythmKey>();
+        Array rhythmKeyValues = Enum.GetValues(typeof(RhythmKey));
+        int enumLength = rhythmKeyValues.Length;
+
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, enumLength); // 0 to 3
+            RhythmKey key = (RhythmKey)rhythmKeyValues.GetValue(randomIndex);
+            result.Add(key);
+        }
+
+        return result;
+    }
+
     private IEnumerator Start()
     {
         Conductor.PlaySong("Beat");
+
+        arrows = new Dictionary<ResourceType, List<RhythmKey>>
+        {
+            { ResourceType.Gay, GenerateRandomList() },
+            { ResourceType.Luxury, GenerateRandomList() },
+            { ResourceType.Functional, GenerateRandomList() }
+        };
 
         resources = InstantiateResources(5);
 
@@ -54,7 +79,7 @@ public class GameManager : MonoBehaviour
             ResourceObject resource = instance.GetComponent<ResourceObject>();
           
 
-            List<RhythmKey> keys = new () {RhythmKey.Left, RhythmKey.Up, RhythmKey.Down};
+            List<RhythmKey> keys = arrows[resourceType];
             resource.Init(resourceType, keys);
             resources.Add(resource);
         }
