@@ -378,7 +378,9 @@ MonoBehaviour:
   cardSpacing: 2
   centerPosition: {x: 0, y: 0, z: 0}
   animationDuration: 0.5
-  startY: -10
+  shakeDuration: 0.3
+  shakeStrength: 0.3
+  vibrato: 10
 --- !u!4 &1110455822
 Transform:
   m_ObjectHideFlags: 0
