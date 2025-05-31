@@ -20,9 +20,6 @@ public class RhythmPressUI : MonoBehaviour
         { RhythmKey.Down, 90 },
         { RhythmKey.Right, 180 },
     };
-
-    [SerializeField] private RhythmInput input;
-    [Space]
     [SerializeField] private RectTransform holder;
     [SerializeField] private CanvasGroup arrow;
     [SerializeField] private RhythmPressBoomUI boom;
@@ -35,10 +32,11 @@ public class RhythmPressUI : MonoBehaviour
     private Vector2 baseSizeDelta;
     private Sequence arrowSequence;
 
-    private void Start()
+    public void Init(RhythmInput input)
     {
         baseSizeDelta = holder.sizeDelta;
         input.OnKeyPressed += AnimateKeyPress;
+        gameObject.SetActive(true);
     }
 
     private void AnimateKeyPress(RhythmKey key)
