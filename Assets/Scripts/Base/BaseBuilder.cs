@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BaseBuilder : MonoBehaviour
 {
@@ -10,20 +11,22 @@ public class BaseBuilder : MonoBehaviour
 
     [Header("Settings")]
     public float spawnHeight = 10f;
+    public float accuracyThreshold = 0.5f; // Threshold for considering a resource type successful
 
     private static int currentFloorIndex = 0;
 
     private void Start()
     {
-            BuildNextFloor(true, false, false);
+        // Initial test floor
+        BuildNextFloor(new Dictionary<ResourceType, float>());
     }
 
-    public void BuildNextFloor(bool isGay, bool isLuxury, bool isFunctional)
+    public void BuildNextFloor(Dictionary<ResourceType, float> result)
     {
         GameObject floorToBuild = GetNextFloor();
         if (floorToBuild != null)
         {
-            // Set visibility of child objects
+            // Set visibility of child objects based on accuracy
             Transform basicShape = floorToBuild.transform.Find("BasicShape");
             Transform functional = floorToBuild.transform.Find("Functional");
             Transform gay = floorToBuild.transform.Find("Gay");
@@ -31,17 +34,20 @@ public class BaseBuilder : MonoBehaviour
 
             if (basicShape != null && functional != null)
             {
+                bool isFunctional = result.ContainsKey(ResourceType.Functional) && result[ResourceType.Functional] >= accuracyThreshold;
                 basicShape.gameObject.SetActive(!isFunctional);
                 functional.gameObject.SetActive(isFunctional);
             }
 
             if (gold != null)
             {
+                bool isLuxury = result.ContainsKey(ResourceType.Luxury) && result[ResourceType.Luxury] >= accuracyThreshold;
                 gold.gameObject.SetActive(isLuxury);
             }
 
             if (gay != null)
             {
+                bool isGay = result.ContainsKey(ResourceType.Gay) && result[ResourceType.Gay] >= accuracyThreshold;
                 gay.gameObject.SetActive(isGay);
             }
 
