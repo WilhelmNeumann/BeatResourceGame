@@ -34,7 +34,7 @@ public class ResourceObject : MonoBehaviour
         }
 
         // Layout arrows in a centered horizontal row
-        float arrowSpacing = 0.5f; // Distance between arrows
+        float arrowSpacing = 0.7f; // Distance between arrows
         int arrowCount = sequence.Count;
         float totalWidth = (arrowCount - 1) * arrowSpacing;
 
