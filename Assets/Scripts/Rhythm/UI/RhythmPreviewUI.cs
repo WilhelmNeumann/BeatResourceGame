@@ -7,6 +7,7 @@ public class RhythmPreviewUI : MonoBehaviour
 {
     [SerializeField] private RhythmPressUI ui;
     [SerializeField] private RhythmController controller;
+    [SerializeField] private RhythmConveyorBeltUI conveyorBelt;
     [SerializeField] private int countdown = 3;
     [Space]
     [SerializeField] private bool mockInit;
@@ -30,12 +31,17 @@ public class RhythmPreviewUI : MonoBehaviour
         {
             return;
         }
-        Conductor.PlaySong("Beat");
-        Init(new List<RhythmResource>()
+        Sequence delay = DOTween.Sequence();
+        delay.AppendInterval(2);
+        delay.AppendCallback(() =>
         {
-            new RhythmResource(ResourceType.Gay, new List<RhythmKey>() { RhythmKey.Left, RhythmKey.Up, RhythmKey.Right }),
-            new RhythmResource(ResourceType.Luxury, new List<RhythmKey>() { RhythmKey.Right, RhythmKey.Down, RhythmKey.Down }),
-            new RhythmResource(ResourceType.Functional, new List<RhythmKey>() { RhythmKey.Up, RhythmKey.Left, RhythmKey.Up }),
+            Conductor.PlaySong("Beat");
+            Init(new List<RhythmResource>()
+            {
+                new RhythmResource(ResourceType.Gay, new List<RhythmKey>() { RhythmKey.Left, RhythmKey.Up, RhythmKey.Right }),
+                new RhythmResource(ResourceType.Luxury, new List<RhythmKey>() { RhythmKey.Right, RhythmKey.Down, RhythmKey.Down }),
+                new RhythmResource(ResourceType.Functional, new List<RhythmKey>() { RhythmKey.Up, RhythmKey.Left, RhythmKey.Up }),
+            });
         });
     }
 
@@ -45,6 +51,11 @@ public class RhythmPreviewUI : MonoBehaviour
         baseSizeDelta = text.rectTransform.sizeDelta;
         Conductor.OnBeat += NextNumber;
         count = countdown;
+
+        int sum = 0;
+        resources.ForEach(a => sum += a.Count);
+        conveyorBelt.Init(Conductor.SongPositionInBeats + countdown, sum);
+
         gameObject.SetActive(true);
         ui.gameObject.SetActive(true);
     }
