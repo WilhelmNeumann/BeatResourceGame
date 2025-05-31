@@ -23,6 +23,7 @@ public class RhythmInput : MonoBehaviour
                 //if (Conductor.BeatAccuracy(false) > 0)
                 //{
                     OnKeyPressed?.Invoke(pair.Value);
+                    SoundController.PlaySound((int)pair.Value, false);
                 //}
             }
         }
