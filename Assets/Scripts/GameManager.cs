@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
             Vector3 targetPosition = centerPosition + new Vector3(xOffset, 0, 0);
             Transform t = resources[i].transform;
             t.DOMove(ResourceObject.OffscreenPosition, animationDuration).SetEase(Ease.OutBack);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.2f);
         }
 
         yield return new WaitForSeconds(animationDuration);
