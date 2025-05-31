@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        Conductor.PlaySong("Beat");
+
         resources = InstantiateResources(5);
 
 
