@@ -5,7 +5,7 @@ public class RhythmResource
 {
     public ResourceType Type { get; private set; }
 
-    private List<(RhythmKey Key, bool Pressed)> keySequence { get; } = new List<(RhythmKey key, bool pressed)>();
+    public List<(RhythmKey Key, bool Pressed)> keySequence { get; } = new List<(RhythmKey key, bool pressed)>();
 
     public int Count => keySequence.Count;
     public float Accuracy => keySequence.FindAll(a => a.Pressed).Count / (float)keySequence.Count;

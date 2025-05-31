@@ -54,7 +54,7 @@ MonoBehaviour:
   conveyorBelt: {fileID: 3806100114388648131}
   canvasGroup: {fileID: 1414459466650911201}
   countdown: 3
-  mockInit: 1
+  mockInit: 0
   text: {fileID: 8648229677411330900}
   textHoldTime: 0.2
   textFadeTime: 0.2

@@ -49,6 +49,8 @@ public class RhythmPreviewUI : MonoBehaviour
 
     public void Init(List<RhythmResource> resources)
     {
+        Debug.Log("[RhythmPreviewUI]: Init! Resources: " + string.Join(", ", resources.ConvertAll(a => a.Type + " - " + string.Join(";", a.keySequence))));
+
         this.resources = resources;
         baseSizeDelta = text.rectTransform.sizeDelta;
         Conductor.OnBeat += NextNumber;
