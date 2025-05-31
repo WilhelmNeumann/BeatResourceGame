@@ -21,26 +21,13 @@ public class RhythmController : MonoBehaviour
 
     private int Beat => Conductor.SongPositionInBeats - startBeat;
 
-    private void Start()
-    {
-        if (!mockInit)
-        {
-            return;
-        }
-        Init(new List<RhythmResource>()
-        {
-            new RhythmResource(ResourceType.Gay, new List<RhythmKey>() { RhythmKey.Left, RhythmKey.Up, RhythmKey.Right }),
-            new RhythmResource(ResourceType.Luxury, new List<RhythmKey>() { RhythmKey.Right, RhythmKey.Down, RhythmKey.Down }),
-            new RhythmResource(ResourceType.Functional, new List<RhythmKey>() { RhythmKey.Up, RhythmKey.Left, RhythmKey.Up }),
-        });
-    }
-
     private void CheckFinalBeat(int beat)
     {
         if (Beat >= totalLength)
         {
             rhythmInput.OnKeyPressed -= ValidateKey;
             Conductor.OnBeat -= CheckFinalBeat;
+            pastTimestamps.Clear();
             Dictionary<ResourceType, (float Acc, int Sum)> midResult = new Dictionary<ResourceType, (float Acc, int Sum)>();
             Dictionary<ResourceType, float> result = new Dictionary<ResourceType, float>();
             resources.ForEach(a => midResult.AddOrSet(a.Type, (midResult.SafeGet(a.Type).Acc + a.Accuracy, midResult.SafeGet(a.Type).Sum + 1)));
@@ -54,9 +41,9 @@ public class RhythmController : MonoBehaviour
 
     public void Init(List<RhythmResource> resources)
     {
+        this.resources = resources;
         rhythmInput.OnKeyPressed += ValidateKey;
         Conductor.OnBeat += CheckFinalBeat;
-        this.resources = resources;
         resources.ForEach(a => totalLength += a.Count);
         startBeat = Conductor.SongPositionInBeats;
         //Conductor.PlaySong(songName);
