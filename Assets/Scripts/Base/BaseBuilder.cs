@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class BaseBuilder : MonoBehaviour
 {
+    [SerializeField] private RhythmOutroUI rhythmOutro;
+
     [Header("Floor Objects")]
     [SerializeField] private GameObject floor1;
     [SerializeField] private GameObject floor2;
@@ -18,7 +20,8 @@ public class BaseBuilder : MonoBehaviour
     private void Start()
     {
         // Initial test floor
-        BuildNextFloor(new Dictionary<ResourceType, float>());
+        //BuildNextFloor(new Dictionary<ResourceType, float>());
+        rhythmOutro.OnSongOver += BuildNextFloor;
     }
 
     public void BuildNextFloor(Dictionary<ResourceType, float> result)
