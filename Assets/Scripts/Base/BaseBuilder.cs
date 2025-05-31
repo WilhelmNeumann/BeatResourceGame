@@ -61,8 +61,8 @@ public class BaseBuilder : MonoBehaviour
             if (floorAnimation == null)
             {
                 floorAnimation = floorToBuild.AddComponent<FloorAnimation>();
-                floorAnimation.OnFinishedAnimation += () => OnFinishedAnimation?.Invoke();
             }            
+                floorAnimation.OnFinishedAnimation += () => OnFinishedAnimation?.Invoke();
             
             Vector3 spawnPosition = floorToBuild.transform.position + Vector3.up * spawnHeight;
             floorAnimation.StartFalling(spawnPosition);
