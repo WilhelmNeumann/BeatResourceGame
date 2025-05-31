@@ -43,7 +43,13 @@ public class GameManager : MonoBehaviour
         return result;
     }
 
-    private IEnumerator Start()
+    private IEnumerator Start() {
+        for(var i = 0; i < 7; i++) {
+            yield return PlayRound();
+        }
+    }
+
+    private IEnumerator PlayRound()
     {
         Conductor.PlaySong("Beat");
 
@@ -54,7 +60,7 @@ public class GameManager : MonoBehaviour
             { ResourceType.Functional, GenerateRandomList() }
         };
 
-        resources = InstantiateResources(5);
+        resources = InstantiateResources(4);
 
 
         yield return AppearWithAnimation(resources);
