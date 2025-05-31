@@ -8,8 +8,6 @@ public class RhythmController : MonoBehaviour
     [SerializeField] private RhythmInput rhythmInput;
     [SerializeField] private RhythmPressUI ui;
     [SerializeField] private string songName;
-    [Space]
-    [SerializeField] private bool mockInit;
 
     public event Action<Dictionary<ResourceType, float>> OnSongOver;
     public event Action<RhythmKey, bool> OnKeyMatch;
@@ -48,6 +46,7 @@ public class RhythmController : MonoBehaviour
         startBeat = Conductor.SongPositionInBeats;
         //Conductor.PlaySong(songName);
         ui.Init(rhythmInput);
+        gameObject.SetActive(true);
     }
 
     private void ValidateKey(RhythmKey key)

@@ -170,10 +170,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 1130740333}
   controller: {fileID: 2070017498}
-  mockInit: 1
   countdown: 3
+  mockInit: 1
   text: {fileID: 845177448}
-  textHoldTime: 0.4
+  textHoldTime: 0.2
   textFadeTime: 0.2
   textSizeMult: 1.2
   textSizeFadeTime: 0.2
@@ -759,7 +759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4635294754563360906, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

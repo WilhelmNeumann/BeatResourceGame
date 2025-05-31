@@ -7,8 +7,9 @@ public class RhythmPreviewUI : MonoBehaviour
 {
     [SerializeField] private RhythmPressUI ui;
     [SerializeField] private RhythmController controller;
-    [SerializeField] private bool mockInit;
     [SerializeField] private int countdown = 3;
+    [Space]
+    [SerializeField] private bool mockInit;
     [Header("Animation objects")]
     [SerializeField] private TMP_Text text;
     [Header("Animation data")]
@@ -44,6 +45,7 @@ public class RhythmPreviewUI : MonoBehaviour
         baseSizeDelta = text.rectTransform.sizeDelta;
         Conductor.OnBeat += NextNumber;
         count = countdown;
+        gameObject.SetActive(true);
         ui.gameObject.SetActive(true);
     }
 
@@ -52,22 +54,31 @@ public class RhythmPreviewUI : MonoBehaviour
         if (count > 0)
         {
             text.text = count.ToString();
-            if (arrowSequence != null)
-            {
-                arrowSequence.Kill();
-                arrowSequence = null;
-            }
-            arrowSequence = DOTween.Sequence();
-            arrowSequence.AppendInterval(textHoldTime);
-            arrowSequence.Append(text.DOFade(0, textFadeTime));
-            text.rectTransform.sizeDelta = textSizeMult * baseSizeDelta;
-            text.rectTransform.DOSizeDelta(baseSizeDelta, textSizeFadeTime);
+            Animate();
         }
         else
         {
+            Conductor.OnBeat -= NextNumber;
             text.text = "GO!";
+            Animate().onComplete += () => gameObject.SetActive(false);
             controller.Init(resources);
         }
         count--;
+    }
+
+    private Sequence Animate()
+    {
+        if (arrowSequence != null)
+        {
+            arrowSequence.Kill();
+            arrowSequence = null;
+        }
+        text.alpha = 1;
+        arrowSequence = DOTween.Sequence();
+        arrowSequence.AppendInterval(textHoldTime);
+        arrowSequence.Append(text.DOFade(0, textFadeTime));
+        text.rectTransform.sizeDelta = textSizeMult * baseSizeDelta;
+        text.rectTransform.DOSizeDelta(baseSizeDelta, textHoldTime + textFadeTime);
+        return arrowSequence;
     }
 }
