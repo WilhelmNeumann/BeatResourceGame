@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1319513803}
     m_Modifications:
+    - target: {fileID: 1204934103848941537, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 853173528}
     - target: {fileID: 1244424041269557604, guid: 7dfa8e66c89695f1d9044a7e7703e347, type: 3}
       propertyPath: m_Name
       value: RhythmUI
@@ -566,9 +570,6 @@ MonoBehaviour:
   resourePrefab: {fileID: 8460880594842275074, guid: e3ac32e6e20c444fdbada48c0d864aa1, type: 3}
   centerPosition: {x: 0, y: 0, z: 0}
   animationDuration: 0.5
-  shakeDuration: 0.3
-  shakeStrength: 0.3
-  vibrato: 10
 --- !u!4 &1110455822
 Transform:
   m_ObjectHideFlags: 0
