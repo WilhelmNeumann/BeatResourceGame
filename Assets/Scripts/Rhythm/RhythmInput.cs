@@ -20,10 +20,10 @@ public class RhythmInput : MonoBehaviour
         {
             if (Input.GetKeyDown(pair.Key))
             {
-                if (Conductor.BeatAccuracy(false) > 0)
-                {
+                //if (Conductor.BeatAccuracy(false) > 0)
+                //{
                     OnKeyPressed?.Invoke(pair.Value);
-                }
+                //}
             }
         }
     }

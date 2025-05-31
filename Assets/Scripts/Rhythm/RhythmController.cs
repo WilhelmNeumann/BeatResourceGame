@@ -24,12 +24,14 @@ public class RhythmController : MonoBehaviour
             new RhythmResource(ResourceType.Luxury, new List<RhythmKey>() { RhythmKey.Right, RhythmKey.Down, RhythmKey.Down }),
             new RhythmResource(ResourceType.Functional, new List<RhythmKey>() { RhythmKey.Up, RhythmKey.Left, RhythmKey.Up }),
         });
+        Conductor.OnBeat += CheckFinalBeat;
     }
 
-    private void Update()
+    private void CheckFinalBeat(int beat)
     {
-        if (Conductor.SongPositionInBeats >= totalLength)
+        if (beat >= totalLength)
         {
+            Conductor.OnBeat -= CheckFinalBeat;
             Dictionary<ResourceType, (float Acc, int Sum)> midResult = new Dictionary<ResourceType, (float Acc, int Sum)>();
             Dictionary<ResourceType, float> result = new Dictionary<ResourceType, float>();
             resources.ForEach(a => midResult.AddOrSet(a.Type, (midResult.SafeGet(a.Type).Acc + a.Accuracy, midResult.SafeGet(a.Type).Sum + 1)));

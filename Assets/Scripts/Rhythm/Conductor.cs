@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,6 +71,11 @@ public class Conductor : MonoBehaviour
         //determine how many seconds since the song started
         songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
+        //check new beat
+        if (Mathf.FloorToInt(songPositionInBeats) != Mathf.FloorToInt(songPosition / secPerBeat))
+        {
+            OnBeat?.Invoke(Mathf.FloorToInt(songPosition / secPerBeat));
+        }
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
 
@@ -112,17 +118,19 @@ public class Conductor : MonoBehaviour
         float trueAccuracy = 0.5f - Mathf.Min(instance.positionInBeat, 1 - instance.positionInBeat);
         if (!allowNegative)
         {
-            return trueAccuracy > MIN_ACCURACY ? (trueAccuracy - MIN_ACCURACY) /  (0.5f - MIN_ACCURACY) : 0;
+            return trueAccuracy > MIN_ACCURACY ? (trueAccuracy - MIN_ACCURACY) / (0.5f - MIN_ACCURACY) : 0;
         }
         else
         {
             return
-                 trueAccuracy > MIN_ACCURACY ? (trueAccuracy - MIN_ACCURACY) / (0.5f - MIN_ACCURACY) : 
+                 trueAccuracy > MIN_ACCURACY ? (trueAccuracy - MIN_ACCURACY) / (0.5f - MIN_ACCURACY) :
                 (trueAccuracy < (0.5f - MIN_ACCURACY) ? -(0.5f - MIN_ACCURACY - trueAccuracy) / (0.5f - MIN_ACCURACY) : 0);
         }
     }
 
     public static int SongPositionInBeats { get => Mathf.FloorToInt(instance.songPositionInBeats); }
+
+    public static Action<int> OnBeat;
 }
 
 [System.Serializable]
