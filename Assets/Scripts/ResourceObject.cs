@@ -10,6 +10,8 @@ public class ResourceObject : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private SpriteRenderer sprite;
 
+    public static Vector3 OffscrenPosition = new Vector3(10, -5, 0);
+
     public void Init(ResourceType resourceType) {
         this.resourceType = resourceType;
 
