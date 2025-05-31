@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0fb64d1f7b733bb4392d7c1b61b3d6c4
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176107
+  packageName: 'DevTex: Prototyping Textures'
+  packageVersion: 1.0
+  assetPath: Assets/DevTex/Examples/demoscene/floor.mtl
+  uploadId: 469896

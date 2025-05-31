@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: eab87c20ba12bb14c8fd02c99acd6729
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176107
+  packageName: 'DevTex: Prototyping Textures'
+  packageVersion: 1.0
+  assetPath: Assets/DevTex/Examples/demoscene/forcefield.mtl
+  uploadId: 469896

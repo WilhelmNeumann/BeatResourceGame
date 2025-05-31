@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5d1768187b71c954a946a3afa49f5611
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176107
+  packageName: 'DevTex: Prototyping Textures'
+  packageVersion: 1.0
+  assetPath: Assets/DevTex/Examples/demoscene/sky.mtl
+  uploadId: 469896
