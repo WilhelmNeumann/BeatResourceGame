@@ -21,4 +21,6 @@ public class RhythmResource
         keySequence[index] = (keySequence[index].Key, keySequence[index].Key == key);
         return keySequence[index].Key == key;
     }
+
+    public RhythmKey GetKey(int index) => keySequence[index].Key;
 }

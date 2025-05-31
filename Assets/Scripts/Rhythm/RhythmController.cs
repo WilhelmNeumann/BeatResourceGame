@@ -18,6 +18,12 @@ public class RhythmController : MonoBehaviour
     private void Start()
     {
         rhythmInput.OnKeyPressed += ValidateKey;
+        Init(new List<RhythmResource>()
+        {
+            new RhythmResource(ResourceType.Gay, new List<RhythmKey>() { RhythmKey.Left, RhythmKey.Up, RhythmKey.Right }),
+            new RhythmResource(ResourceType.Luxury, new List<RhythmKey>() { RhythmKey.Right, RhythmKey.Down, RhythmKey.Down }),
+            new RhythmResource(ResourceType.Functional, new List<RhythmKey>() { RhythmKey.Up, RhythmKey.Left, RhythmKey.Up }),
+        });
     }
 
     private void Update()
@@ -37,6 +43,7 @@ public class RhythmController : MonoBehaviour
     public void Init(List<RhythmResource> resources)
     {
         this.resources = resources;
+        resources.ForEach(a => totalLength += a.Count);
         Conductor.PlaySong(songName);
     }
 
@@ -64,6 +71,6 @@ public class RhythmController : MonoBehaviour
         }
         bool success = resources[i].MatchKey(key, index);
         OnKeyMatch?.Invoke(key, success);
-        Debug.Log("[RhythmController]: " + (success ? "SUCCESS: " : "FAIL   : ") + key + " at pos " + index + " of resource " + i + ", a " + resources[i].Type);
+        Debug.Log("[RhythmController]: " + (success ? "SUCCESS: " : "FAIL          : ") + key + " / " + resources[i].GetKey(index) + " at pos " + index + " of resource " + i + ", a " + resources[i].Type);
     }
 }
