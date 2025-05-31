@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     private List<ResourceObject> resources;
 
+    private ResourceObject _currentResourcePlaying;
+
     private IEnumerator Start()
     {
         resources = InstantiateResources(5);
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
         yield return AppearWithAnimation(resources);
 
         _gameState = GameState.Playing;
-        yield return ShakeAndScaleSize(resources);
+        yield return Play(resources);
 
         _gameState = GameState.Building;
         yield return DisappearWithAnimation(resources);
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
             Vector3 targetPosition = centerPosition + new Vector3(xOffset, 0, 0);
             Transform t = resources[i].transform;
             t.DOMove(ResourceObject.OffscreenPosition, animationDuration).SetEase(Ease.OutBack);
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(1);
         }
 
         yield return new WaitForSeconds(animationDuration);
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float shakeStrength = 0.3f;
     [SerializeField] private int vibrato = 10;
 
-    public IEnumerator ShakeAndScaleSize(List<ResourceObject> resources)
+    public IEnumerator Play(List<ResourceObject> resources)
     {
         int count = resources.Count;
 
