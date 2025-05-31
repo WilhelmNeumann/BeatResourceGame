@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         isPlaying = true;
         yield return new WaitWhile(() => isPlaying);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.5f);
         Conductor.OnBeat -= OnBeat;
         yield return DisappearWithAnimation(resources);
 
