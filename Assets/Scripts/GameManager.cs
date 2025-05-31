@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         yield return Play(resources);
 
         _gameState = GameState.Building;
-        yield return DisappearWithAnimation(resources);
+        // yield return DisappearWithAnimation(resources);
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {
@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
             GameObject instance = Instantiate(resourePrefab, ResourceObject.OffscreenPosition, Quaternion.identity);
             ResourceObject resource = instance.GetComponent<ResourceObject>();
           
-            resource.Init(resourceType);
+
+            List<RhythmKey> keys = new () {RhythmKey.Left, RhythmKey.Up, RhythmKey.Down};
+            resource.Init(resourceType, keys);
             resources.Add(resource);
         }
 
