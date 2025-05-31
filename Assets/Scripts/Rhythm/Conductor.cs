@@ -6,7 +6,7 @@ using UnityEngine;
 public class Conductor : MonoBehaviour
 {
     public const float MIN_ACCURACY = 0.25f;
-    
+
     public List<Song> Songs;
 
     //Song beats per minute
@@ -50,7 +50,12 @@ public class Conductor : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
         instance = this;
+        DontDestroyOnLoad(this);
     }
 
     private void Start()

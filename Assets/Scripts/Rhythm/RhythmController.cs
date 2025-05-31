@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RhythmController : MonoBehaviour
@@ -8,6 +9,7 @@ public class RhythmController : MonoBehaviour
     [SerializeField] private string songName;
 
     public Action<Dictionary<ResourceType, float>> OnSongOver;
+    public Action<RhythmKey, bool> OnKeyMatch;
 
     private List<int> pastTimestamps = new List<int>();
     private List<RhythmResource> resources;
@@ -28,6 +30,7 @@ public class RhythmController : MonoBehaviour
             midResult.ForEach((key, value) => result.Add(key, value.Acc / value.Sum));
             OnSongOver?.Invoke(result);
             gameObject.SetActive(false);
+            Debug.Log("[RhythmController]: FINAL RESULT: " + string.Join(", ", result.Keys.ToList().ConvertAll(key => key + " - " + result[key])));
         }
     }
 
@@ -59,6 +62,8 @@ public class RhythmController : MonoBehaviour
             Debug.LogError("[RhythmController]: Too many keys!");
             return;
         }
-        resources[i].MatchKey(key, index);
+        bool success = resources[i].MatchKey(key, index);
+        OnKeyMatch?.Invoke(key, success);
+        Debug.Log("[RhythmController]: " + (success ? "SUCCESS: " : "FAIL   : ") + key + " at pos " + index + " of resource " + i + ", a " + resources[i].Type);
     }
 }
