@@ -8,6 +8,7 @@ public class FloorAnimation : MonoBehaviour
     public float magicCircleScale = 0.5f;
     public float magicCircleDuration = 1f;
     public GameObject magicCirclePrefab;
+    public Vector3 magicCircleOffset = new Vector3(-0.5f, 0f, 0f); // Offset to move animation left
 
     private Rigidbody2D rb;
     private bool hasReachedTarget = false;
@@ -55,28 +56,31 @@ public class FloorAnimation : MonoBehaviour
 
     private void SpawnMagicCircle()
     {
-        if (magicCirclePrefab != null)
+        if (magicCirclePrefab == null)
         {
-            var magicCircle = Instantiate(magicCirclePrefab, transform.position, Quaternion.identity);
-            magicCircle.gameObject.SetActive(true);
-            magicCircle.transform.localScale = Vector3.one * magicCircleScale;
-            
-            // Add SpriteRenderer if it doesn't exist
-            var spriteRenderer = magicCircle.GetComponent<SpriteRenderer>();
-            if (spriteRenderer == null)
-            {
-                spriteRenderer = magicCircle.AddComponent<SpriteRenderer>();
-                // Set default sprite if needed
-                // spriteRenderer.sprite = Resources.Load<Sprite>("MagicCircle");
-            }
-            
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.sortingOrder = 50; // Magic circle will be drawn at order 50
-            }
-            
-            Destroy(magicCircle, magicCircleDuration);
+            Debug.LogError("Magic circle prefab is not assigned!");
+            return;
         }
+
+        Debug.Log("Spawning magic circle");
+        // Add offset to position
+        Vector3 spawnPosition = transform.position + magicCircleOffset;
+        var magicCircle = Instantiate(magicCirclePrefab, spawnPosition, Quaternion.identity);
+        magicCircle.gameObject.SetActive(true);
+        magicCircle.transform.localScale = Vector3.one * magicCircleScale;
+
+        // Set renderer settings for all particle systems
+        var particleSystems = magicCircle.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in particleSystems)
+        {
+            var renderer = ps.GetComponent<ParticleSystemRenderer>();
+            if (renderer != null)
+            {
+                renderer.sortingOrder = 50; // Set high sorting order for all particle systems
+            }
+        }
+        
+        Destroy(magicCircle, magicCircleDuration);
     }
 
     private IEnumerator TestAnimationCoroutine()
