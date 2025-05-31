@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         baseBuilder.OnFinishedAnimation += () => { Debug.Log("fddfgdfgfg"); isDoingOtherStuff = false; };
         for(var i = 0; i < 7; i++) {
             yield return PlayRound();
+            yield return new WaitForSeconds(1f);
         }
     }
 
