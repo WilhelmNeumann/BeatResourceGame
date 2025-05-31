@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6188849776704827805
+--- !u!1 &4782589316609611784
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2200464245177669814}
-  - component: {fileID: 5177685373591332135}
-  - component: {fileID: 3931875272608045671}
+  - component: {fileID: 6369949653050406816}
+  - component: {fileID: 8649205320334948664}
   m_Layer: 0
-  m_Name: RhythmController
+  m_Name: Conductor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2200464245177669814
+--- !u!4 &6369949653050406816
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188849776704827805}
+  m_GameObject: {fileID: 4782589316609611784}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,29 +32,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5177685373591332135
+--- !u!114 &8649205320334948664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188849776704827805}
+  m_GameObject: {fileID: 4782589316609611784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88163cc3cc05df37092c421184981ef7, type: 3}
+  m_Script: {fileID: 11500000, guid: b5d238e1125bd9772a0769c7bbe4a3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rhythmInput: {fileID: 3931875272608045671}
-  songName: Beat
---- !u!114 &3931875272608045671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188849776704827805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102a1886c55d294c5ae45b01515600c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Songs:
+  - Name: Beat
+    AudioClip: {fileID: 8300000, guid: 28c10ec63a3c43d258106e3ec3f02dba, type: 3}
+    BPM: 125
+    BeatsPerLoop: 4
+    FirstBeatOffset: 0

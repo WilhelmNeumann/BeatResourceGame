@@ -16,11 +16,9 @@ public class RhythmResource
         sequence.ForEach(a => keySequence.Add((a, false)));
     }
 
-    public void MatchKey(RhythmKey key, int index)
+    public bool MatchKey(RhythmKey key, int index)
     {
-        if (keySequence[index].Key == key)
-        {
-            keySequence[index] = (key, true);
-        }
+        keySequence[index] = (keySequence[index].Key, keySequence[index].Key == key);
+        return keySequence[index].Key == key;
     }
 }
