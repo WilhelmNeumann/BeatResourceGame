@@ -130,7 +130,7 @@ public class Conductor : MonoBehaviour
 
     public static int SongPositionInBeats { get => Mathf.FloorToInt(instance.songPositionInBeats); }
 
-    public static Action<int> OnBeat;
+    public static event Action<int> OnBeat;
 }
 
 [System.Serializable]

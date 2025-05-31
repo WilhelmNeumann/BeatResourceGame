@@ -21,17 +21,23 @@ public class RhythmPressUI : MonoBehaviour
         { RhythmKey.Right, 180 },
     };
 
+    [SerializeField] private RhythmInput input;
+    [Space]
     [SerializeField] private RectTransform holder;
     [SerializeField] private CanvasGroup arrow;
-    [SerializeField] private RhythmInput input;
+    [SerializeField] private RhythmPressBoomUI boom;
     [Header("Animation")]
     [SerializeField] private float arrowHoldTime = 0.2f;
     [SerializeField] private float arrowFadeTime = 0.4f;
     [SerializeField] private float holderSizeMult = 1.2f;
     [SerializeField] private float holderSizeFadeTime = 0.3f;
 
+    private Vector2 baseSizeDelta;
+    private Sequence arrowSequence;
+
     private void Start()
     {
+        baseSizeDelta = holder.sizeDelta;
         input.OnKeyPressed += AnimateKeyPress;
     }
 
@@ -39,8 +45,17 @@ public class RhythmPressUI : MonoBehaviour
     {
         //text.text = KEY_TO_TEXT[key];
         arrow.transform.localEulerAngles = Vector3.forward * KEY_TO_ROT[key];
-        Sequence arrowSequence = DOTween.Sequence();
-        //arrowSequence.Append()
-        
+        arrow.alpha = 1;
+        if (arrowSequence != null)
+        {
+            arrowSequence.Kill();
+            arrowSequence = null;
+        }
+        arrowSequence = DOTween.Sequence();
+        arrowSequence.AppendInterval(arrowHoldTime);
+        arrowSequence.Append(arrow.DOFade(0, arrowFadeTime));
+        holder.sizeDelta = holderSizeMult * baseSizeDelta;
+        holder.DOSizeDelta(baseSizeDelta, holderSizeFadeTime);
+        boom.Activate();
     }
 }
