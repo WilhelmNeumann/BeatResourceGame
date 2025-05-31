@@ -32,7 +32,6 @@ public class RhythmController : MonoBehaviour
             midResult.ForEach((key, value) => result.Add(key, value.Acc / value.Sum));
             OnSongOver?.Invoke(result);
             gameObject.SetActive(false);
-            ui.gameObject.SetActive(false);
             Debug.Log("[RhythmController]: FINAL RESULT: " + string.Join(", ", result.Keys.ToList().ConvertAll(key => key + " - " + result[key])));
         }
     }
