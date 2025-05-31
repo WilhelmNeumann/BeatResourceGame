@@ -1284,9 +1284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8ec60338d7a4880a137ee64063ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicCircleScale: 0.5
-  magicCircleDuration: 1
+  magicCircleScale: 1
+  magicCircleDuration: 0.5
   magicCirclePrefab: {fileID: 5469696687200016493, guid: 339d28fba72804b0ca5d65d1255232ec, type: 3}
+  magicCircleOffset: {x: -0.5, y: 0, z: 0}
 --- !u!1 &1349628277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,9 +1672,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8ec60338d7a4880a137ee64063ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicCircleScale: 0.5
-  magicCircleDuration: 1
+  magicCircleScale: 1
+  magicCircleDuration: 0.5
   magicCirclePrefab: {fileID: 5469696687200016493, guid: 339d28fba72804b0ca5d65d1255232ec, type: 3}
+  magicCircleOffset: {x: -0.5, y: 0, z: 0}
 --- !u!1 &1600237753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,9 +2196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8ec60338d7a4880a137ee64063ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicCircleScale: 0.5
-  magicCircleDuration: 1
+  magicCircleScale: 1
+  magicCircleDuration: 0.5
   magicCirclePrefab: {fileID: 5469696687200016493, guid: 339d28fba72804b0ca5d65d1255232ec, type: 3}
+  magicCircleOffset: {x: -0.5, y: 0, z: 0}
 --- !u!1 &2069801041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,9 +2323,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8ec60338d7a4880a137ee64063ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicCircleScale: 0.5
-  magicCircleDuration: 1
+  magicCircleScale: 1
+  magicCircleDuration: 0.5
   magicCirclePrefab: {fileID: 5469696687200016493, guid: 339d28fba72804b0ca5d65d1255232ec, type: 3}
+  magicCircleOffset: {x: -0.5, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
