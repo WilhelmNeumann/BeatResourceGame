@@ -7,6 +7,8 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private BaseBuilder baseBuilder;
+
     [SerializeField] private int gameRounds;
     [SerializeField] private int numberOfResourcesPerRound;
     [SerializeField] private GameObject resourePrefab;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     private int currentResourceIndex = 0;
 
     private bool isPlaying = false;
+    private bool isDoingOtherStuff = false;
 
     private Dictionary<ResourceType, List<RhythmKey>> arrows;
 
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator Start() {
+        baseBuilder.OnFinishedAnimation += () => { Debug.Log("fddfgdfgfg"); isDoingOtherStuff = false; };
         for(var i = 0; i < 7; i++) {
             yield return PlayRound();
         }
@@ -73,7 +77,9 @@ public class GameManager : MonoBehaviour
         Conductor.OnBeat -= OnBeat;
         yield return DisappearWithAnimation(resources);
 
+        isDoingOtherStuff = true;
         rhythmStart.Init(resources.ConvertAll(a => new RhythmResource(a.resourceType, a.Sequence)));
+        yield return new WaitWhile(() => isDoingOtherStuff);
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {
