@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ResourceObject : MonoBehaviour
 {
-    [SerializeField] private ResourceType resourceType;
+    [SerializeField] public ResourceType resourceType;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private GameObject arrowPrefab;
@@ -21,7 +21,10 @@ public class ResourceObject : MonoBehaviour
 
     public static Vector3 OffscreenPosition = new Vector3(10, -10, 0);
 
-    public void Init(ResourceType resourceType, List<RhythmKey> sequence) {
+    public List<RhythmKey> Sequence { get; private set; }
+
+    public void Init(ResourceType resourceType, List<RhythmKey> sequence)
+    {
         this.resourceType = resourceType;
         beatCount = sequence.Count;
 
@@ -77,6 +80,8 @@ public class ResourceObject : MonoBehaviour
                     break;
             }
         }
+
+        Sequence = sequence;
     }
 
     public bool Beat()

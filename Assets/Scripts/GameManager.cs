@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gameRounds;
     [SerializeField] private int numberOfResourcesPerRound;
     [SerializeField] private GameObject resourePrefab;
+    [SerializeField] private RhythmPreviewUI rhythmStart;
 
     [SerializeField] private Vector3 centerPosition = new Vector3(0, 0, 0);
     [SerializeField] private float animationDuration = 0.5f;
@@ -34,12 +35,14 @@ public class GameManager : MonoBehaviour
         yield return AppearWithAnimation(resources);
 
         Conductor.OnBeat += OnBeat;
-    
+
         isPlaying = true;
         yield return new WaitWhile(() => isPlaying);
 
         Conductor.OnBeat -= OnBeat;
         yield return DisappearWithAnimation(resources);
+
+        rhythmStart.Init(resources.ConvertAll(a => new RhythmResource(a.resourceType, a.Sequence)));
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {
