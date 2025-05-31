@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
         isDoingOtherStuff = true;
         rhythmStart.Init(resources.ConvertAll(a => new RhythmResource(a.resourceType, a.Sequence)));
         yield return new WaitWhile(() => isDoingOtherStuff);
+        isDoingOtherStuff = false;
+        isPlaying = false;
     }
 
     private List<ResourceObject> InstantiateResources(int amount) {

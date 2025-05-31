@@ -41,6 +41,7 @@ public class RhythmController : MonoBehaviour
         this.resources = resources;
         rhythmInput.OnKeyPressed += ValidateKey;
         Conductor.OnBeat += CheckFinalBeat;
+        totalLength = 0;
         resources.ForEach(a => totalLength += a.Count);
         startBeat = Conductor.SongPositionInBeats;
         //Conductor.PlaySong(songName);
